@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/css/style.css">
+  <title>JS Reading List</title>
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <h1 class="header__h1">Reading List</h1>
+      <button class="button button-lg is-primary open-modal">
+        Add book
+      </button>
+    </header>
+
+    <main>
+      <div class="row">
+        <table class="table is-stripped is-hoverable">
+          <thead class="table__header">
+            <tr>
+              <th>
+                Title
+                <a href="" id="sort-title-asc">a</a>
+                <span>/</span>
+                <a href="" id="sort-title-desc">z</a>
+              </th>
+              <th>
+                Author
+                <a href="" id="sort-author-asc">a</a>
+                <span>/</span>
+                <a href="" id="sort-author-desc">z</a>
+              </th>
+              <th>
+                Status
+                <a href="" id="sort-read">r</a>
+                <span>/</span>
+                <a href="" id="sort-not-read">n</a>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="table__body" id="table-body">
+            <!-- Populated by main.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row row-btn">
+        <button class="button button-lg is-primary open-modal">
+          Add book
+        </button>
+      </div>
+    </main>
+
+    <!-- Modal & Form -->
+
+    <div class="modal" id="modal">
+      <div class="modal__backdrop" id="modal-backdrop"></div>
+      <div class="modal__content">
+
+        <span class="close" id="close-modal">&times;</span>
+
+        <form action="" class="form">
+          <div class="form__group field">
+            <label for="title" class="form__group-label label">
+              Title *
+            </label>
+            <input type="text" name="title" id="form-input-title"
+              class="form__group-input input" placeholder="Book title" minlength="2" required autofocus="">
+          </div>
+
+          <div class="form__group field">
+            <label for="author" class="form__group-label label">
+              Author *
+            </label>
+            <input type="text" name="author" id="form-input-author"
+              class="form__group-input input" placeholder="Book author" minlength="2" required>
+          </div>
+
+          <div class="form__group field">
+            <label for="url" class="form__group-label label">
+              Goodreads URL
+            </label>
+            <input type="url" name="url" placeholder="https://www.goodreads.com/book/show/111111.Book_Title" id="form-input-url"
+              class="form__group-input input">
+          </div>
+
+          <div class="form__group field">
+            <label for="status" class="form__group-label label">
+              Status
+            </label>
+            <div class="control">
+              <div class="select">
+                <select name="status" id="form-select"
+                  class="form__group-select">
+                  <option value="Read">Read</option>
+                  <option value="Not read" selected>Not read</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form__group field">
+            <button type="submit"
+              class="form__group-button button button-lg is-primary"
+              id="submit">
+              Add book
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="dist/js/main.js"></script>
+</body>
+</html>
