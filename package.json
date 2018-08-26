@@ -8,9 +8,22 @@
     "react-scripts": "1.1.5"
   },
   "scripts": {
+    "build-css": "npm-run-all compile-sass prefix-css compress-css",
+    "compile-sass": "node-sass-chokidar src/stylesheets/main.scss src/temp/style.comp.css",
+    "prefix-css": "postcss --use autoprefixer -b 'last 10 versions' src/temp/style.comp.css -o src/temp/style.prefix.css",
+    "compress-css": "node-sass-chokidar src/temp/style.prefix.css src/index.css --output-style compressed",
+    "watch-sass": "node-sass-chokidar src/stylesheets/main.scss src/index.css -w",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.1.3",
+    "bulma": "^0.7.1",
+    "node-sass-chokidar": "^1.3.3",
+    "normalize.css": "^8.0.0",
+    "npm-run-all": "^4.1.3",
+    "postcss-cli": "^6.0.0"
   }
 }
