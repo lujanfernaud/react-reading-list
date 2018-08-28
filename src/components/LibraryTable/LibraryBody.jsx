@@ -43,14 +43,7 @@ class Library extends Component {
       <tbody className='table__body'>
         {
           this.state.books.map(book => {
-            return (
-              <BookRow
-                key={book.id}
-                title={book.title}
-                author={book.author}
-                status={book.status}
-              />
-            )
+            return <BookRow key={book.id} book={book} />
           })
         }
       </tbody>
