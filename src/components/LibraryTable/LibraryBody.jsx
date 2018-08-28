@@ -43,11 +43,27 @@ class Library extends Component {
       <tbody className='table__body'>
         {
           this.state.books.map(book => {
-            return <BookRow key={book.id} book={book} />
+            return (
+              <BookRow
+                key={book.id}
+                book={book}
+                onChange={this.handleChange.bind(this)} />
+            )
           })
         }
       </tbody>
     )
+  }
+
+  handleChange(book) {
+    const books = [...this.state.books]
+    const index = books.indexOf(book)
+
+    books[index] = book
+
+    this.setState({
+      books: books
+    })
   }
 }
 

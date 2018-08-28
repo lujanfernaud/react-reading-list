@@ -3,16 +3,23 @@ import React, { Component } from 'react'
 class StatusButton extends Component {
   render() {
     return (
-      <button className={this.currentStatus()}>
+      <button
+        className={`button ${this.buttonStyle()}`}
+        onClick={this.handleStatus.bind(this)}>
         {this.props.status}
       </button>
     )
   }
 
-  currentStatus() {
-    let status = this.props.status === 'Read' ? 'is-success' : 'is-warning'
+  buttonStyle() {
+    return this.props.status === 'Read' ? 'is-success' : 'is-warning'
+  }
 
-    return `button ${status}`
+  handleStatus() {
+    const currentStatus = this.props.status
+    const newStatus = currentStatus === 'Read' ? 'Not read' : 'Read'
+
+    this.props.onClick(newStatus)
   }
 }
 
