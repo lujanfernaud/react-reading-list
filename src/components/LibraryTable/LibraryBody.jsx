@@ -50,7 +50,7 @@ class Library extends Component {
                 key={book.id}
                 book={book}
                 onChange={this.handleChange}
-                delete={this.handleDelete}
+                onDelete={this.handleDelete}
               />
             )
           })

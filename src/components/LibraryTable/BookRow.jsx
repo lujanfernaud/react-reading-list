@@ -35,7 +35,7 @@ class BookRow extends Component {
   handleDelete() {
     const book = this.props.book
 
-    this.props.delete(book)
+    this.props.onDelete(book)
   }
 }
 
