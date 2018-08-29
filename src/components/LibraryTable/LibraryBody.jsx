@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import BookRow from './BookRow'
 
-class Library extends Component {
+class LibraryBody extends Component {
   constructor(props) {
     super()
     this.handleChange = this._handleChange.bind(this)
@@ -46,4 +46,4 @@ class Library extends Component {
   }
 }
 
-export default Library
+export default LibraryBody
