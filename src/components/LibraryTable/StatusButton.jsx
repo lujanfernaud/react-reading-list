@@ -8,16 +8,17 @@ class StatusButton extends Component {
 
   render() {
     return (
-      <button
-        className={`button ${this.buttonStyle()}`}
-        onClick={this.handleStatus}>
+      <button className={this.buttonStyle()} onClick={this.handleStatus}>
         {this.props.status}
       </button>
     )
   }
 
   buttonStyle() {
-    return this.props.status === 'Read' ? 'is-success' : 'is-warning'
+    const status = this.props.status
+    const statusStyle = status === 'Read' ? 'is-success' : 'is-warning'
+
+    return `button ${statusStyle}`
   }
 
   handleStatus() {
