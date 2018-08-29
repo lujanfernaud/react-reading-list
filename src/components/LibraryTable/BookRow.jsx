@@ -9,11 +9,11 @@ class BookRow extends Component {
   }
 
   render() {
-    const { title, author, status } = this.props.book
+    const { author, status } = this.props.book
 
     return(
       <tr>
-        <td>{title}</td>
+        <td>{this._title()}</td>
         <td>{author}</td>
         <td>
           <StatusButton status={status} onClick={this.handleStatus} />
@@ -26,6 +26,16 @@ class BookRow extends Component {
   }
 
   // private
+
+  _title() {
+    const { title, url } = this.props.book
+
+    if (url) {
+      return <a href={url} target='_blank'>{title}</a>
+    } else {
+      return {title}
+    }
+  }
 
   _handleStatus(status) {
     const book = this.props.book
