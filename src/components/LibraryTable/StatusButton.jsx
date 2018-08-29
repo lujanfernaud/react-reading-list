@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 
 class StatusButton extends Component {
+  constructor() {
+    super()
+    this.handleStatus = this.handleStatus.bind(this)
+  }
+
   render() {
     return (
       <button
         className={`button ${this.buttonStyle()}`}
-        onClick={this.handleStatus.bind(this)}>
+        onClick={this.handleStatus}>
         {this.props.status}
       </button>
     )
