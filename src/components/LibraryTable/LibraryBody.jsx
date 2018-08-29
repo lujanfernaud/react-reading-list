@@ -4,8 +4,8 @@ import BookRow from './BookRow'
 class Library extends Component {
   constructor(props) {
     super()
-    this.handleChange = this.handleChange.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleChange = this._handleChange.bind(this)
+    this.handleDelete = this._handleDelete.bind(this)
   }
 
   render() {
@@ -27,7 +27,9 @@ class Library extends Component {
     )
   }
 
-  handleChange(book) {
+  // private
+
+  _handleChange(book) {
     const books = [...this.props.books]
     const index = books.indexOf(book)
 
@@ -36,7 +38,7 @@ class Library extends Component {
     this.props.onChange(books)
   }
 
-  handleDelete(book) {
+  _handleDelete(book) {
     const books = this.props.books
     const filteredBooks = books.filter(item => item !== book)
 

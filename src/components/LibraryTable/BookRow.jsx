@@ -4,8 +4,8 @@ import StatusButton from './StatusButton'
 class BookRow extends Component {
   constructor() {
     super()
-    this.handleStatus = this.handleStatus.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleStatus = this._handleStatus.bind(this)
+    this.handleDelete = this._handleDelete.bind(this)
   }
 
   render() {
@@ -25,14 +25,16 @@ class BookRow extends Component {
     )
   }
 
-  handleStatus(status) {
+  // private
+
+  _handleStatus(status) {
     const book = this.props.book
     const updatedBook = book.status = status
 
     this.props.onChange(updatedBook)
   }
 
-  handleDelete() {
+  _handleDelete() {
     const book = this.props.book
 
     this.props.onDelete(book)
