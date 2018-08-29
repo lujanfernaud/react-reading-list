@@ -7,7 +7,7 @@ class LibraryTable extends Component {
     return (
       <table className='table is-stripped is-hoverable'>
         <LibraryHead />
-        <LibraryBody />
+        <LibraryBody books={this.props.books} onChange={this.props.onChange} />
       </table>
     )
   }

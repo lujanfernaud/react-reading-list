@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import LibraryTable from './components/LibraryTable'
+import Seeds from './lib/seeds'
+import LocalStorage from './lib/localStorage'
 
 class App extends Component {
+  constructor() {
+    super()
+    this._localStorage = new LocalStorage()
+    this._seeds = new Seeds()
+    this.state = { books: this._setBooks() }
+    this.handleChange = this._handleChange.bind(this)
+  }
+
   render() {
     return (
       <div className='App container'>
@@ -15,7 +25,10 @@ class App extends Component {
 
         <main>
           <div className='row'>
-            <LibraryTable />
+            <LibraryTable
+              books={this.state.books}
+              onChange={this.handleChange}
+            />
           </div>
 
           <div className='row row-btn'>
@@ -85,6 +98,34 @@ class App extends Component {
 
       </div>
     )
+  }
+
+  // private
+
+  _setBooks() {
+    if (localStorage.books && this._localStorage.booksNotEmpty()) {
+      return this._booksWithId(this._localStorage.books)
+    } else {
+      return this._booksWithId(this._seeds.books)
+    }
+  }
+
+  _booksWithId(books) {
+    return books.map((book, index) => {
+      book.id = index + 1
+      return book
+    })
+  }
+
+  _handleChange(books) {
+    this.setState({ books: books })
+    this._updateLocalStorage(books)
+  }
+
+  _updateLocalStorage(books) {
+    if (!this._localStorage.available()) { return }
+
+    this._localStorage.updateBooks(books)
   }
 }
 
