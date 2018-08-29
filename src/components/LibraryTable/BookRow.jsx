@@ -12,19 +12,29 @@ class BookRow extends Component {
         <td>
           <StatusButton
             status={status}
-            onClick={this.handleClick.bind(this)}
+            onClick={this.handleStatusClick.bind(this)}
           />
         </td>
-        <td><a href='' className='delete is-large' /></td>
+        <td>
+          <button
+            className='delete is-large'
+            onClick={this.handleDeleteClick.bind(this)} />
+        </td>
       </tr>
     )
   }
 
-  handleClick(status) {
+  handleStatusClick(status) {
     const book = this.props.book
     const updatedBook = book.status = status
 
     this.props.onChange(updatedBook)
+  }
+
+  handleDeleteClick() {
+    const book = this.props.book
+
+    this.props.delete(book)
   }
 }
 

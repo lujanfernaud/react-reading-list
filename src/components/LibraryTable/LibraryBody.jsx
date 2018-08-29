@@ -36,6 +36,8 @@ class Library extends Component {
         }
       ]
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   render() {
@@ -47,7 +49,9 @@ class Library extends Component {
               <BookRow
                 key={book.id}
                 book={book}
-                onChange={this.handleChange.bind(this)} />
+                onChange={this.handleChange}
+                delete={this.handleDelete}
+              />
             )
           })
         }
@@ -61,9 +65,14 @@ class Library extends Component {
 
     books[index] = book
 
-    this.setState({
-      books: books
-    })
+    this.setState({ books: books })
+  }
+
+  handleDelete(book) {
+    const books = this.state.books
+    const filteredBooks = books.filter(item => item !== book)
+
+    this.setState({ books: filteredBooks })
   }
 }
 
