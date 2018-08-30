@@ -9,19 +9,16 @@ class Form extends Component {
     this.statusInput = React.createRef()
 
     this.handleInput = this._handleInput.bind(this)
+    this.handleClick = this._handleClick.bind(this)
     this.handleSubmit = this._handleSubmit.bind(this)
   }
 
   componentDidUpdate() {
     if (!this.props.modalActive) { return }
 
-    const titleInput = this.titleInput.current
+    this.titleInput.current.focus()
 
-    titleInput.focus()
-
-    if (titleInput.value === '') {
-      titleInput.classList.remove('is-danger')
-    }
+    this._removeValidationErrorsStyling()
   }
 
   render() {
@@ -75,7 +72,8 @@ class Form extends Component {
         </div>
 
         <div className='form__group field'>
-          <button type='submit'
+          <button onClick={this.handleClick}
+            type='submit'
             className='form__group-button button button-lg is-primary'>
             Add book
           </button>
@@ -90,11 +88,37 @@ class Form extends Component {
     const field = event.target
 
     if (!field.validity.valid) {
-      field.classList.remove('is-primary')
-      field.classList.add('is-danger')
+      this._setFieldAsInvalid(field)
     } else {
-      field.classList.remove('is-danger')
-      field.classList.add('is-primary')
+      this._setFieldAsValid(field)
+    }
+  }
+
+  _setFieldAsInvalid(field) {
+    field.classList.remove('is-primary')
+    field.classList.add('is-danger')
+  }
+
+  _setFieldAsValid(field) {
+    field.classList.remove('is-danger')
+    field.classList.add('is-primary')
+  }
+
+  _handleClick(event) {
+    const titleInput = this.titleInput.current
+    const authorInput = this.authorInput.current
+    const urlInput = this.urlInput.current
+
+    if (!titleInput.validity.valid) {
+      this._setFieldAsInvalid(titleInput)
+    }
+
+    if (!authorInput.validity.valid) {
+      this._setFieldAsInvalid(authorInput)
+    }
+
+    if (urlInput.value !== '' && !urlInput.validity.valid) {
+      this._setFieldAsInvalid(urlInput)
     }
   }
 
@@ -109,6 +133,20 @@ class Form extends Component {
     }
 
     this.props.onSubmit(book)
+  }
+
+  _removeValidationErrorsStyling() {
+    const titleInput = this.titleInput.current
+    const authorInput = this.authorInput.current
+    const urlInput = this.urlInput.current
+
+    const fields = [titleInput, authorInput, urlInput]
+
+    fields.forEach(field => {
+      if (field.value === '') {
+        field.classList.remove('is-danger')
+      }
+    })
   }
 }
 
