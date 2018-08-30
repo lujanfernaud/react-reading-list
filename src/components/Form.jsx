@@ -22,6 +22,7 @@ class Form extends Component {
 
     this.titleInput.current.focus()
 
+    this._clearFields()
     this._removeValidationErrorsStyling()
   }
 
@@ -147,6 +148,12 @@ class Form extends Component {
     } else {
       return ''
     }
+  }
+
+  _clearFields() {
+    this.titleInput.current.value = ''
+    this.authorInput.current.value = ''
+    this.urlInput.current.value = ''
   }
 
   _removeValidationErrorsStyling() {
