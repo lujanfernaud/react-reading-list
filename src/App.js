@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
-import LibraryTable from './components/LibraryTable'
+
 import Seeds from './lib/seeds'
 import LocalStorage from './lib/localStorage'
+
+import LibraryTable from './components/LibraryTable'
+import AddBookButton from './components/AddBookButton'
+import Modal from './components/Modal'
 
 class App extends Component {
   constructor() {
     super()
     this._localStorage = new LocalStorage()
     this._seeds = new Seeds()
-    this.state = { books: this._setBooks() }
+
+    this.state = {
+      books: this._populateBooks(),
+      modalActive: false
+    }
+
     this.handleChange = this._handleChange.bind(this)
+    this.handleModalState = this._handleModalState.bind(this)
+    this.handleSubmit = this._handleSubmit.bind(this)
   }
 
   render() {
@@ -18,9 +29,8 @@ class App extends Component {
 
         <header className='header'>
           <h1 className='header__h1'>Reading List</h1>
-          <button className='button button-lg is-primary open-modal'>
-            Add book
-          </button>
+
+          <AddBookButton onClick={this.handleModalState} />
         </header>
 
         <main>
@@ -32,69 +42,15 @@ class App extends Component {
           </div>
 
           <div className='row row-btn'>
-            <button className='button button-lg is-primary open-modal'>
-              Add book
-            </button>
+            <AddBookButton onClick={this.handleModalState} />
           </div>
         </main>
 
-        <div className='modal' id='modal'>
-          <div className='modal__backdrop' id='modal-backdrop'></div>
-          <div className='modal__content'>
-
-            <span className='close' id='close-modal'>&times;</span>
-
-            <form action='' className='form'>
-              <div className='form__group field'>
-                <label htmlFor='title' className='form__group-label label'>
-                  Title *
-                </label>
-                <input type='text' name='title' id='form-input-title'
-                  className='form__group-input input' placeholder='Book title' minLength='2' required autoFocus='' />
-              </div>
-
-              <div className='form__group field'>
-                <label htmlFor='author' className='form__group-label label'>
-                  Author *
-                </label>
-                <input type='text' name='author' id='form-input-author'
-                  className='form__group-input input' placeholder='Book author' minLength='2' required />
-              </div>
-
-              <div className='form__group field'>
-                <label htmlFor='url' className='form__group-label label'>
-                  Goodreads URL
-                </label>
-                <input type='url' name='url' placeholder='https://www.goodreads.com/book/show/111111.Book_Title' id='form-input-url'
-                  className='form__group-input input' />
-              </div>
-
-              <div className='form__group field'>
-                <label htmlFor='status' className='form__group-label label'>
-                  Status
-                </label>
-                <div className='control'>
-                  <div className='select'>
-                    <select name='status' id='form-select'
-                      className='form__group-select'>
-                      <option value='Read'>Read</option>
-                      <option value='Not read' selected>Not read</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div className='form__group field'>
-                <button type='submit'
-                  className='form__group-button button button-lg is-primary'
-                  id='submit'>
-                  Add book
-                </button>
-              </div>
-            </form>
-
-          </div>
-        </div>
+        <Modal
+          active={this.state.modalActive}
+          onClick={this.handleModalState}
+          onSubmit={this.handleSubmit}
+        />
 
       </div>
     )
@@ -102,7 +58,7 @@ class App extends Component {
 
   // private
 
-  _setBooks() {
+  _populateBooks() {
     if (localStorage.books && this._localStorage.booksNotEmpty()) {
       return this._booksWithId(this._localStorage.books)
     } else {
@@ -126,6 +82,22 @@ class App extends Component {
     if (!this._localStorage.available()) { return }
 
     this._localStorage.updateBooks(books)
+  }
+
+  _handleModalState() {
+    this.setState({ modalActive: !this.state.modalActive })
+  }
+
+  _handleSubmit(book) {
+    const books = [...this.state.books]
+    const lastBook = books[books.length - 1]
+
+    book.id = lastBook.id + 1
+
+    books.push(book)
+
+    this._handleModalState()
+    this._handleChange(books)
   }
 }
 

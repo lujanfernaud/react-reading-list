@@ -30,10 +30,10 @@ class BookRow extends Component {
   _title() {
     const { title, url } = this.props.book
 
-    if (url) {
+    if (url.length !== 0) {
       return <a href={url} target='_blank'>{title}</a>
     } else {
-      return {title}
+      return title
     }
   }
 
