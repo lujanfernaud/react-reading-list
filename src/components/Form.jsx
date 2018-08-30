@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 class Form extends Component {
+  static get GoodreadsURL() {
+    return /(https:\/\/www.goodreads.com\/book\/show\/\d{1,8}\.\w{2,35})/g
+  }
+
   constructor() {
     super()
     this.titleInput = React.createRef()
@@ -128,11 +132,21 @@ class Form extends Component {
     const book = {
       title: this.titleInput.current.value,
       author: this.authorInput.current.value,
-      url: this.urlInput.current.value,
+      url: this._bookURL(),
       status: this.statusInput.current.value
     }
 
     this.props.onSubmit(book)
+  }
+
+  _bookURL() {
+    const urlInput = this.urlInput.current.value
+
+    if (urlInput.match(Form.GoodreadsURL)) {
+      return urlInput
+    } else {
+      return ''
+    }
   }
 
   _removeValidationErrorsStyling() {
