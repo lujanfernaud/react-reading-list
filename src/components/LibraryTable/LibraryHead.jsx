@@ -8,7 +8,10 @@ class LibraryHead extends Component {
     return (
       <thead className='table__header'>
         <tr>
-          <TitleHeader />
+          <TitleHeader
+            books={this.props.books}
+            onChange={this.props.onChange}
+          />
           <AuthorHeader />
           <StatusHeader />
           <th />
