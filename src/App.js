@@ -62,7 +62,7 @@ class App extends Component {
     if (localStorage.books && this._localStorage.booksNotEmpty()) {
       return this._booksWithId(this._localStorage.books)
     } else {
-      return this._booksWithId(this._seeds.books)
+      return this._booksWithId(this._seeds.books.reverse())
     }
   }
 

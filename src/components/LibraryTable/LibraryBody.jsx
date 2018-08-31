@@ -9,10 +9,12 @@ class LibraryBody extends Component {
   }
 
   render() {
+    const books = [...this.props.books].reverse()
+
     return (
       <tbody className='table__body'>
         {
-          this.props.books.map(book => {
+          books.map(book => {
             return (
               <BookRow
                 key={book.id}
