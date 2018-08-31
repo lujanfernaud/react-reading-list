@@ -12,7 +12,12 @@ class LibraryHead extends Component {
             books={this.props.books}
             onChange={this.props.onChange}
           />
-          <AuthorHeader />
+
+          <AuthorHeader
+            books={this.props.books}
+            onChange={this.props.onChange}
+          />
+
           <StatusHeader />
           <th />
         </tr>
