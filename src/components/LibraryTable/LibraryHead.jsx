@@ -18,7 +18,11 @@ class LibraryHead extends Component {
             onChange={this.props.onChange}
           />
 
-          <StatusHeader />
+          <StatusHeader
+            books={this.props.books}
+            onChange={this.props.onChange}
+          />
+
           <th />
         </tr>
       </thead>
