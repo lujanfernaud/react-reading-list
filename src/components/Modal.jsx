@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Form from './Form'
 
 class Modal extends Component {

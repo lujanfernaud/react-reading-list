@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import TitleHeader from './TitleHeader'
 import AuthorHeader from './AuthorHeader'
 import StatusHeader from './StatusHeader'
