@@ -14,6 +14,18 @@ class Seeds {
         status: 'Not read'
       },
       {
+        title: 'On Writing Well',
+        author: 'William Zinsser',
+        url: 'https://www.goodreads.com/book/show/53343.On_Writing_Well',
+        status: 'Not read'
+      },
+      {
+        title: 'Zen in the Art of Writing',
+        author: 'Ray Bradbury',
+        url: 'https://www.goodreads.com/book/show/103761.Zen_in_the_Art_of_Writing',
+        status: 'Not read'
+      },
+      {
         title: 'Non Violent Communication',
         author: 'Marshall B. Rosenberg',
         url: 'https://www.goodreads.com/book/show/560861.Non_Violent_Communication',
