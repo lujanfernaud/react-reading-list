@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Seeds from './lib/seeds'
 import LocalStorage from './lib/localStorage'
 
-import LibraryTable from './components/LibraryTable'
+import LibraryTable from './components/LibraryTable/LibraryTable'
 import AddBookButton from './components/AddBookButton'
 import Modal from './components/Modal'
 

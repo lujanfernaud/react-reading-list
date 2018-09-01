@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import LibraryHead from './LibraryTable/LibraryHead'
-import LibraryBody from './LibraryTable/LibraryBody'
+import LibraryHead from './LibraryHead'
+import LibraryBody from './LibraryBody'
 
 class LibraryTable extends Component {
   render() {
