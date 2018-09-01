@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Sorter from '../../lib/sorter'
-import { compareStatus } from '../../lib/sorterHelpers'
+import { compareTitles, compareStatus } from '../../lib/sorterHelpers'
 
 class StatusHeader extends Component {
   constructor() {
@@ -38,9 +38,10 @@ class StatusHeader extends Component {
 
   _handleClick(sorterFunction) {
     const books = [...this.props.books]
-    const sortedBooks = sorterFunction(books, compareStatus)
+    const booksByTitle = sorterFunction(books, compareTitles)
+    const booksByStatus = sorterFunction(booksByTitle, compareStatus)
 
-    this.props.onChange(sortedBooks)
+    this.props.onChange(booksByStatus)
   }
 }
 
