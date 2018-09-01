@@ -16,7 +16,7 @@ class AuthorHeader extends Component {
         Author
         <span>&nbsp;</span>
         <a href='' onClick={this.handleAscClick}>a</a>
-        <span>/</span>
+        <span> / </span>
         <a href='' onClick={this.handleDescClick}>z</a>
       </th>
     )

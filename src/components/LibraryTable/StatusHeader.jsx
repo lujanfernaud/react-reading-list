@@ -16,7 +16,7 @@ class StatusHeader extends Component {
         Status
         <span>&nbsp;</span>
         <a href='' onClick={this.handleAscClick}>r</a>
-        <span>/</span>
+        <span> / </span>
         <a href='' onClick={this.handleDescClick}>n</a>
       </th>
     )
