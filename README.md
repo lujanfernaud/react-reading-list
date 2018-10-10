@@ -2,6 +2,10 @@
 
 React version of a simple reading list [initially written in vanilla JS](https://github.com/lujanfernaud/js-reading-list).
 
+## Demo
+
+[lujanfernaud.com/react-reading-list](http://lujanfernaud.com/react-reading-list/)
+
 ## Built With
 
 - [React 16](https://reactjs.org/)
